@@ -4,7 +4,7 @@
 		<scenes>
 			<scene name="plane" >
 				<TRANSLATE x = "0" y = "-0.4" z = "0" />
-				<SCALE x = "2" y = "1" z = "2" />
+				<SCALE x = "20" y = "1" z = "20" />
 				<geometry name="plane" type ="SQUARE" material="plane"/>
 			</scene>
 			<scene name="tA" param="UNITIZE SWAP_YZ">
@@ -75,6 +75,7 @@
                 </lights>
                 <injectionMaps>
                     <map toMaterial="*">
+                        <!-- <shader fromMaterial ="lighting_point" fromLibrary="lighting" /> -->
                         <shader fromMaterial ="lighting_spotlight" fromLibrary="lighting" />
                     </map>
                 </injectionMaps>
