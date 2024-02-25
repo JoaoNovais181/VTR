@@ -76,7 +76,7 @@
                 <injectionMaps>
                     <map toMaterial="*">
                         <!-- <shader fromMaterial ="lighting_point" fromLibrary="lighting" /> -->
-                        <shader fromMaterial ="lighting_spotlight" fromLibrary="lighting" />
+                        <shader fromMaterial ="lighting_flashlight" fromLibrary="lighting" />
                     </map>
                 </injectionMaps>
             </pass>

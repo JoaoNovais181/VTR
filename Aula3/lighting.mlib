@@ -13,6 +13,10 @@
                         name="lighting_spotlight"
                         vs="shaders/lighting_spotlight.vert"
                         ps="shaders/lighting_spotlight.frag" />
+                <shader 
+                        name="lighting_flashlight"
+                        vs="shaders/lighting_flashlight.vert"
+                        ps="shaders/lighting_flashlight.frag" />
         </shaders>
         <materials>
                 <material name="lighting">
@@ -91,6 +95,48 @@
                                                 uniform="l_spotdir"
                                                 type="LIGHT"
                                                 component="SPOT_DIRECTION"
+                                                id="0" />
+                                        <valueof
+                                                uniform="l_spotcutoff"
+                                                type="LIGHT"
+                                                component="SPOT_CUTOFF"
+                                                id="0" />
+                                        <valueof
+                                                uniform="m_pvm"
+                                                type="RENDERER"
+                                                component="PROJECTION_VIEW_MODEL" />
+                                        <valueof
+                                                uniform="diffuse"
+                                                type="COLOR"
+                                                component="DIFFUSE" />
+                                        <valueof
+                                                uniform="m_normal"
+                                                type="RENDERER"
+                                                component="NORMAL" />
+                                        <valueof
+                                                uniform="m_view"
+                                                type="RENDERER"
+                                                component="VIEW" />
+                                        <valueof 
+                                                uniform="m_viewmodel"
+                                                type="RENDERER"
+                                                component="VIEW_MODEL"/>
+                                </values>
+                        </shader>
+                </material>
+
+                <material name="lighting_flashlight">
+                        <shader name="lighting_flashlight">
+                                <values>
+                                        <valueof
+                                                uniform="l_pos"
+                                                type="CAMERA"
+                                                component="POSITION"
+                                                id="0" />
+                                        <valueof
+                                                uniform="l_spotdir"
+                                                type="CAMERA"
+                                                component="LOOK_AT_POINT"
                                                 id="0" />
                                         <valueof
                                                 uniform="l_spotcutoff"

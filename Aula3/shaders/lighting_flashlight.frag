@@ -9,6 +9,7 @@ uniform float shininess = 128.0;
 uniform float l_spotcutoff;
 
 const float minIntensity = 0.0;
+const float maxDist = 10.0;
 
 // input
 in vec3 n,       // camera space
@@ -24,6 +25,7 @@ void main() {
     vec3 lp = vec3(m_view * l_pos); // camera space
 
     vec3 ld = normalize(lp - pos);
+    float dist = distance(lp, pos);
     vec3 sd = -normalize(vec3(m_view * l_spotdir));
 
     float cosTheta = dot(sd, ld);
@@ -34,19 +36,24 @@ void main() {
 
     // float outer = l_spotcutoff - ((1/(1+l_spotcutoff))/5);
 
-    if (cosTheta > l_spotcutoff)
+    if (cosTheta > l_spotcutoff && dist < maxDist)
     {
-        intensity = dot(n_normalized, ld);
-        // float diff = cosTheta - l_spotcutoff;
-        // intensity *= (((cosTheta + diff/2) - l_spotcutoff)/(1-l_spotcutoff));
+        // float diff = maxDist - dist;
+        intensity = dot(ld, n_normalized) * (1-((dist)/maxDist));
+
+        float diff = cosTheta - l_spotcutoff;
+        intensity *= (((cosTheta + diff/2) - l_spotcutoff)/(1-l_spotcutoff));
+        
         intensity = max(intensity, minIntensity);
+        
         // if (l_spotcutoff - cosTheta < 0.01*l_spotcutoff)
         // intensity *= (l_spotcutoff - cosTheta); 
-        if (intensity > 0.0)
-        {
-            vec3 h = normalize(ld + eye_cam);
-            specInt = pow(max(dot(n_normalized, h), 0.0), shininess);
-        }
+        
+    }
+    if (intensity > 0.0)
+    {
+        vec3 h = normalize(ld + eye_cam);
+        specInt = pow(max(dot(n_normalized, h), 0.0), shininess);
     }
     // else if (cosTheta > outer)
     // {
