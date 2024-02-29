@@ -8,7 +8,7 @@ uniform mat4 m_view;
 uniform float shininess = 128.0;
 uniform float l_spotcutoff;
 
-const float minIntensity = 0.0;
+const float minIntensity = 0.25;
 
 // input
 in vec3 n,       // camera space

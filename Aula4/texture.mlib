@@ -1,0 +1,72 @@
+<materialLib name="texturing">
+    <textures>
+        <texture
+            name="teapot"
+            filename="textures/teapot.jpg"
+            mipmap="true" />
+        <texture
+            name="crate"
+            filename="textures/crate.jpg"
+            mipmap="true" />
+        <texture 
+            name="coloredLine"
+            filename="textures/coloredLine.jpg"
+            mipmap="true" />
+        <texture 
+            name="mixLine"
+            filename="textures/mixLine.jpg"
+            mipmap="true" />
+    </textures>
+    <shaders>
+        <shader
+            name="texture"
+            vs="shaders/texture.vert"
+            ps="shaders/texture.frag" />
+    </shaders>
+    <materials>
+        <material name="textured">
+            <shader name="texture">
+                <values>
+                    <valueof
+                        uniform="m_pvm"
+                        type="RENDERER"
+                        component="PROJECTION_VIEW_MODEL" />
+                    <valueof
+                        uniform="tex"
+                        type="TEXTURE_BINDING"
+                        component="UNIT"
+                        id="0" />
+                    <valueof 
+                        uniform="width"
+                        type="COLOR"
+                        component="width" />
+                    <valueof 
+                        uniform="gap"
+                        type="COLOR"
+                        component="gap" />
+                    <valueof 
+                        uniform="div"
+                        type="COLOR"
+                        component="div" />
+                    <valueof 
+                        uniform="secondaryDiffuse"
+                        type="COLOR"
+                        component="secondaryDiffuse" />
+                    <valueof 
+                        uniform="diffuse"
+                        type="COLOR"
+                        component="DIFFUSE" />
+                    <valueof 
+                        uniform="factor"
+                        type="COLOR"
+                        component="factor" />
+                </values>
+            </shader>
+            <textures>
+                <texture
+                    name="coloredLine"
+                    UNIT="0" />
+            </textures>
+        </material>
+    </materials>
+</materialLib>    
