@@ -1,0 +1,28 @@
+<project
+	name="bla"
+	width="512"
+	height="512">
+
+	<!-- No cameras, no lights, no cameras -->
+	<assets>
+		<materialLibs>
+			<materialLib filename="project.mlib" />
+		</materialLibs>
+	</assets>
+
+	<pipelines>
+		<pipeline name="bla">
+			<pass
+				class="compute"
+				name="bla">
+				<material
+					name="copyImage"
+					fromLibrary="Compute"
+					dimX="256"
+					dimY="256"
+					dimZ="1" />
+			</pass>
+		</pipeline>
+	</pipelines>
+
+</project>

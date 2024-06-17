@@ -1,0 +1,97 @@
+<materialLib name="Compute">
+	<shaders>
+		<shader
+			name="cb"
+			cs="comp.comp" />
+		<shader
+			name="cb2"
+			cs="comp2.comp" />
+	</shaders>
+
+	<textures>
+		<texture
+			name="src"
+			filename="crate.jpg" />
+		<texture name="dest">
+			<WIDTH value="256" />
+			<HEIGHT value="256" />
+			<DEPTH value="1" />
+			<INTERNAL_FORMAT value="RGBA" />
+		</texture>
+	</textures>
+
+
+	<buffers>
+		<buffer name="src">
+			<DIM
+				x="5"
+				y="1"
+				z="1" />
+			<structure>
+				<field value="FLOAT" />
+			</structure>
+			<file name="b.txt" />
+		</buffer>
+
+		<buffer name="dest">
+			<DIM
+				x="5"
+				y="1"
+				z="1" />
+			<structure>
+				<field value="FLOAT" />
+			</structure>
+		</buffer>
+	</buffers>
+
+	<materials>
+
+		<material name="copyImage">
+
+			<shader name="cb2">
+				<values>
+					<valueof
+						uniform="imageUnit"
+						type="IMAGE_TEXTURE"
+						id="3"
+						component="UNIT" />
+					<valueof
+						uniform="texUnit"
+						type="TEXTURE_BINDING"
+						id="2"
+						component="UNIT" />
+				</values>
+
+				<textures>
+					<texture name="src" UNIT="2" /> <!-- Numeros para UNIT podiam ser iguais porque sao coisas diferentes-->
+				</textures>
+				<imageTextures>
+					<imageTexture texture="dest" UNIT="3">
+						<ACCESS value="WRITE_ONLY" />
+						<LEVEL value="0" /> <!-- nivel do mipmap que vamos aceder -->
+					</imageTexture>
+				</imageTextures>
+			</shader>
+
+		</material>
+
+		<material name="copyBuffer">
+
+			<shader name="cb" />
+
+			<buffers>
+				<buffer name="src">
+					<TYPE value="SHADER_STORAGE" />
+					<BINDING_POINT value="1" />
+				</buffer>
+				<buffer name="dest">
+					<TYPE value="SHADER_STORAGE" />
+					<BINDING_POINT value="2" />
+				</buffer>
+			</buffers>
+
+		</material>
+
+	</materials>
+
+</materialLib>
